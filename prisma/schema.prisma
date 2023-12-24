@@ -1,0 +1,40 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model brands {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    updatedAt DateTime? @updatedAt
+    createdAt DateTime  @default(now())
+}
+
+model collections {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    img       Int
+    updatedAt DateTime? @updatedAt
+    createdAt DateTime  @default(now())
+}
+
+model watches {
+    id           String    @id @default(auto()) @map("_id") @db.ObjectId
+    name         String
+    img          Int
+    price        Int
+    oldPrice     Int?
+    isNew        Boolean
+    onSale       Boolean
+    stars        Int
+    inStock      Boolean
+    onlineOnly   Boolean
+    brandId      String
+    collectionId String
+    updatedAt    DateTime? @updatedAt
+    createdAt    DateTime  @default(now())
+}
